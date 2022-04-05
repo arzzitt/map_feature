@@ -11,7 +11,7 @@ const double CAMERA_ZOOM = 16;
 const double CAMERA_TILT = 80;
 const double CAMERA_BEARING = 30;
 const LatLng SOURCE_LOCATION = LatLng(42.747932, -71.167889);
-const LatLng DEST_LOCATION = LatLng(37.335685, -122.0605916);
+const LatLng DEST_LOCATION = LatLng(23.163336, 79.935384);
 
 
 void main() =>
@@ -31,7 +31,7 @@ class MapPageState extends State<MapPage> {
   late PolylinePoints polylinePoints;
   String googleAPIKey = 'AIzaSyCiIC6zOvXZxS7j3H_G5_YYa9iZL1wMJvU';
   late BitmapDescriptor sourceIcon;
-   BitmapDescriptor? destinationIcon;
+  late BitmapDescriptor destinationIcon;
   LocationData? destinationLocation;
   late Location location;
   double pinPillPosition = -100;
@@ -68,10 +68,10 @@ class MapPageState extends State<MapPage> {
       sourceIcon = onValue;
     });
 
-    BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),
-        'assets/destination_map_marker.png')
+    BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(devicePixelRatio: 2.0), 'assets/destination_map_marker.png')
         .then((onValue) {
-       onValue = destinationIcon!;
+      destinationIcon = onValue;
     });
   }
 
@@ -192,7 +192,7 @@ class MapPageState extends State<MapPage> {
             pinPillPosition = 0;
           });
         },
-        icon: destinationIcon!));
+        icon: destinationIcon));
     // set the route lines on the map from source to destination
     // for more info follow this tutorial
     setPolylines();
